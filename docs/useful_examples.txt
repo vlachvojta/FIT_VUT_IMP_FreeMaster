@@ -1,0 +1,50 @@
+=================
+
+FITkit3/Minerva
+On-board MCU: Kinetis MK60DN512VMD100
+
+===============
+
+
+Useful (MCU related) readings in k60p144m100sf2v2rm.pdf ... 
+
+In a sequence:
+-------------
+p. (page) 183: clock distribution
+p. 271+: PORT PCRs
+p. 287: SIM_SOPT1 (OSC32KSEL), p. 295: SIM_SOPT5
+p. 300+: SIM_SCGC1+
+p. 311+: SIM_CLKDIV1+: OUTDIV1-4
+p. 321+: RCM
+p. 543+: WDOG
+p. 570: MCG_C1 (IREFS=1), 573: MCG_C4
+p. 1125+: RTC
+p. 1485+: UART
+p. 1741+: GPIO
+
+Clock setup:
+-----------
+p. 184+: High-Level device clocking diagram
+p. 570: MCG_C1 (IREFS=1), 
+p. 573: MCG_C4
+p. 311+: SIM_CLKDIV1+: OUTDIV1-4
+
+Pins/GPIO:
+---------
+p. 243+: pinout
+p. 271+: PORT PCRs
+p. 1741+: GPIO
+
+NVIC
+----
+p. 75+: vector table
+
+
+
+Useful (board related) summary based on FITkit3_schema.pdf ...
+=======================
+
+UART - PTE8/UART5_Tx/..., PTE9/UART5_Rx/...
+BTNs - grounded + pull-up; PTE25+26 (Btn3+2), PTE10+11+12 (Btn0+4+1)
+LEDs - PTB2+3+4+5 (LED3+2+1+0), K-ctrl
+piezzo - PTA4
