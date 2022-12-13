@@ -27,6 +27,9 @@
 
 Pokud je vše správně, tak by se Ti měla na stránce zobrazovat aktuální hodnota GPIO_PDOR (zkus zmáčknout tlačítko, jestli se změní) a zároveň by Ti mělo jít zapsat hodnotu do pole pod tím.
 
+## Závěr
+- Snad Vám to běží, pokud ne, napiš, nebo se ptej ostatních.
+- Ve složce je i FreeMaster projekt, ale ten prosím Vás **NEPOUŽÍVEJTE** to byste to měli až moc lehký a hned v dalším kroku stejně nebudete vědět jak...
 
 
 
