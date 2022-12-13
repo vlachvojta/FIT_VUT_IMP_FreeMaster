@@ -1,0 +1,75 @@
+<!--
+Copyright 2019-2020 NXP
+
+SPDX-License-Identifier: BSD-3-Clause
+
+
+example.htm: Visual Basic Script example
+-->
+
+
+<html>
+<head>  
+    <script language="VBScript">    
+    
+    Function onError(err)   
+        'Erors are reported in the status field.
+        document.getElementById("status").innerHTML = err
+    End Function
+    
+    Function read_variable(name, span_id) 
+        'ReadVariable uses FreeMASTER variable object from current project. Use 
+        'ReadUIntVariable to access the memory directly using a symbol name.
+        bSucc = pcm.ReadVariable(name, vValue, tValue, bsRetMsg)      
+        
+        If bSucc then   
+            document.getElementById(span_id).innerHTML = tValue
+        else
+            onError("Error when reading variable " & name & ". " + bsRetMsg)
+        End If                 
+    End Function
+    
+    Function read_array(name, elemSize, length, span_id) 
+        'Arrays are accessed in memory directly, using a symbol name and element size.
+        bSucc = pcm.ReadUIntArray(name, length, elemSize, arr, bsRetMsg)      
+        
+        If bSucc then   
+            document.getElementById(span_id).innerHTML = ""
+            For i = 0 to uBound(arr)
+                document.getElementById(span_id).innerHTML = document.getElementById(span_id).innerHTML & arr(i) & ", "
+            Next
+        else
+            onError("Error when reading variable " & name & ". " + bsRetMsg)
+        End If                 
+    End Function
+    
+    Function write_variable(name, input_id) 
+        val = document.getElementById(input_id).value
+        
+        'WriteVariable uses FreeMASTER variable object from current project. Use 
+        'WriteUIntVariable to access the memory directly using a symbol name.
+        bSucc = pcm.WriteVariable(name, val, bsRetMsg)      
+        
+        If bSucc then   
+            document.getElementById("status").innerHTML = "Write of the " & name & " succeeded."
+        else
+            onError("Error when reading variable " & name & ". " + bsRetMsg)
+        End If                 
+    End Function
+    
+    </script>    
+</head>
+<body>
+    <!-- The main FreeMASTER ActiveX communication object -->
+    <object id="pcm" height="0" width="0" classid="clsid:48A185F1-FFDB-11D3-80E3-00C04F176153"></object>
+    
+    <!-- User form -->
+    Read var16 = <span id="var16_read">N/A</span> <input type="button" value="Read var16" onclick="call read_variable('var16', 'var16_read')" /> <br />
+    Read var16inc = <span id="var16inc_read">N/A</span> <input type="button" value="Read var16inc" onclick="call read_variable('var16inc', 'var16inc_read')" /> <br />
+    Read arr16 = <span id="arr16_read">N/A</span> <input type="button" value="Read arr16" onclick="call read_array('arr16', 2, 10, 'arr16_read')" /> <br />
+    
+    Write var16inc: <input type="text" id="var16inc_val" value="10" /> <input type="button" value="Write var16inc" onclick="call write_variable('var16inc', 'var16inc_val')" /> <br />
+    
+    Status: <span id="status">No errors.</span> <br />
+</body>
+</html>
