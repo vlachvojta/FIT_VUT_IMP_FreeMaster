@@ -1,7 +1,7 @@
 # HOW TO ověřit si, že FreeMaster komunikuje s FitKitem
 
 ## Prerekvizity
-Mít na PC KDS a na FITKIT nahrát nějaký demo od Strnadela (odkaz má někdo plsss? já to mám už stažený a nevím odkud)
+Mít na PC KDS a na FitKit nahrát nějaký demo od Ing. Strnadela Ph.D. 
 
 ## Instalace FreeMasteru
 https://community.nxp.com/t5/FreeMASTER-Knowledge-Base/FreeMASTER-3-0-Installation-Guide/ta-p/1101507

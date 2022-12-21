@@ -10,6 +10,7 @@ example.htm: JSON-RPC example
 <meta http-equiv="Cache-Control" content="no-store" />
 <html>
 <head>
+    <link rel="icon" href="nxp_logo.png">
     <!-- Get the  information object named "FreeMASTER" (needs version 3.1.3 and above) -->
     <script type="text/javascript" src="fmstr://localapp/info.js"></script>
 
@@ -57,16 +58,43 @@ example.htm: JSON-RPC example
     function timer() {
         // console.log("Tick-tock...")
         read_variable('GPIOB_PDOR', 'GPIOB_PDOR_read')
+        read_variable('LEDs', 'LEDs_read')
         // pcm.ReadVariable("var16")
         //     .then((response) => var16_read.innerText = response.data)
         //     .catch((err) => var16_read.innerText = "ERROR: " + JSON.stringify(error))
     }
 
+    // function start_tick_tock(){
+    //     setInterval(tick_tock, 1000)
+    // }
+
+    
     function on_error(err) 
     {
         /* Erors are reported in the status field. */
         document.getElementById("status").innerHTML = err;
     }
+
+    async function tick_tock() {
+        read_variable('LEDs', 'LEDs_read');
+        var value = parseInt(document.getElementById('LEDs_read').innerHTML);
+        write_value('LEDs', (value + 1) % 16);
+        read_variable('LEDs', 'LEDs_read');
+    }
+    
+    // async function read_variable_and_return(name)
+    // {
+    //     /* ReadVariable uses FreeMASTER variable object from current project. Use 
+    //      * ReadUIntVariable to access the memory directly using a symbol name. */
+    //     return new pcm.ReadVariable(name)
+    //         .then((value) => { 
+    //             return value.data;
+    //         })
+    //         .catch((err) => { 
+    //             on_error(err.msg);
+    //             return 0;
+    //         });
+    // }
     
     function read_variable(name, span_id)
     {
@@ -109,16 +137,32 @@ example.htm: JSON-RPC example
                 on_error(err.msg);
             });  
     }
+
+    function write_value(name, value)
+    {
+        /* WriteVariable uses FreeMASTER variable object from current project. Use 
+         * WriteUIntVariable to access the memory directly using a symbol name. */
+        pcm.WriteVariable(name, value)
+            .then(() => { 
+                document.getElementById("status").innerHTML = "Write of the " + name + " succeeded.";
+            })
+            .catch((err) => { 
+                on_error(err.msg);
+            });  
+    }
     
-    </script>    
+    </script>
 </head>
 <body onload="main()">
     <!-- User form -->
     Read GPIOB_PDOR = <span id="GPIOB_PDOR_read">N/A</span> <!-- <input type="button" value="Read" onclick="read_variable('GPIOB_PDOR', 'GPIOB_PDOR_read')" /> --> <br />
+    Read LEDs = <span id="LEDs_read">N/A</span> <!-- <input type="button" value="Read" onclick="read_variable('GPIOB_PDOR', 'GPIOB_PDOR_read')" /> --> <br />
     <!-- Read var16inc = <span id="var16inc_read">N/A</span> <input type="button" value="Read" onclick="read_variable('var16inc', 'var16inc_read')" /> <br /> -->
     <!-- Read arr16 = <span id="arr16_read">N/A</span> <input type="button" value="Read" onclick="read_array('arr16', 2, 10, 'arr16_read')" /> <br /> -->
-    Write GPIOB_PDOR: <input type="text" id="GPIOB_PDOR_val" value="10" /> <input type="button" value="Write" onclick="write_variable('GPIOB_PDOR', 'GPIOB_PDOR_val')" /> <br />
+    Write LEDs: <input type="text" id="LEDs_val" value="10" /> <input type="button" value="Write" onclick="write_variable('LEDs', 'LEDs_val')" /> <br />
     Status: <span id="status">No errors.</span> <br />
+
+    <input id="'start_tick_tock_btn" type="button" value="Start tick tock" onclick="setInterval(tick_tock, 250)">
 
     <hr>
     <span id="fmstr_info"></span>
