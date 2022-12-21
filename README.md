@@ -1,14 +1,17 @@
-# FRIMPMaster
-IMP project 2022/2023 winter semestr, BUT, Microprocessors and Embedded Systems
+# VUT FIT IMP FreeMaster 
+Toto repo vzniklo jako základní info pro spolužáky při zpracování projektu IMP (Mikroprocesory a vestavné systémy) na FIT VUT 2022 se zadáním **FreeMaster**.
+Projekt byl zaměřený na prozkoumání nástroje FreeMaster a jeho možností komunikovat s mikrokontrolérem.
 
-## Zadani
-viz zadani.md
+## Super dulezita vec
+FitKit3 procesor: MK60DN512VMD100
 
-## **Super dulezita vec**
-FitKit3 procesor: MK60D 512 něco něco (nějak tak jakoby, říkal to na přednášce)
-podle Strnadela: MK60DN512VMD100
-
-## Ruzny odkazy:
+## Odkazy na Webinare od NXP:
 * webinar NXP (HTML pro FreeMaster): https://www.nxp.com/design/training/introduction-to-freemaster-dashboard-coding-using-html-javascript-activex-and-json-rpc:TIP-INTRO-FREEMASTER-CODING?SAMLart=ST-AAF0E3YJDJej%2BJVBprc7Vu5rkUdez5SHRsQ5Hj5Rh9RnlisQC%2BWN3ts8
 
-- webinar NXP #2 (Python + JS pro FreeMaster): https://www.nxp.com/design/training/getting-started-with-freemaster-lite-and-json-rpc-protocol:GETTING-STARTED-FREEMASTER-LITE
+* webinar NXP #2 (Python + JS pro FreeMaster a FreeMaster Lite): https://www.nxp.com/design/training/getting-started-with-freemaster-lite-and-json-rpc-protocol:GETTING-STARTED-FREEMASTER-LITE
+
+### Notes with timestamps from first webinar
+- 20:57 How to set timer to check variables periodically
+- 23:00 How to write value to variable: 
+- 41:42 JSON-RPC programming 
+- 44:48 Read vars on timer
